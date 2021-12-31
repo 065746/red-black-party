@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+header{
+    min-height: 70px;
+    background-color: #555;
+    color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: fixed;
+    width: 100%;
+  }
+  
+  header .logo{
+    margin-left: 50px;
+    text-transform: uppercase ;
+    letter-spacing: 2px;
+  }
+  
+  header ul {
+    list-style: none;
+    margin-left: 50px;
+  }
+  
+  header ul li{
+    display: inline-block ;
+  }
+  
+  header ul li a{
+    text-decoration: none;
+    color: whitesmoke;
+    text-transform: uppercase;
+    opacity: 0.6;
+    padding: 0 15px;
+   /* display: none;*/
+  }
+  
+  header ul li a:hover{
+    opacity: 1;
+  }
+  
+  header .menu, header .close{
+    cursor: pointer;
+    text-transform: uppercase;
+    border: 1px solid white;
+    padding: 10px 20px;
+    margin-right: 20px;
+    display: none;
+  }
+  
+  header .close{
+    position: absolute;
+    top: 10px;
+    right: 0;
+    border-radius: 5px;
+  }
+  
+  section{
+    min-height: 100vh;
+    background-color: lightskyblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  section h2{
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #444;
+    font-size: 2.5rem;
+  }
+  
+  @media(max-width : 800px ){
+    header .logo,
+    header ul{
+      margin: 0;
+      width: 100%;
+      text-align: center;
+      line-height: 50px;
+    }
+  }
+  
+  @media (max-width : 600px){
+    header ul{
+      position: fixed;
+      top: 0;
+      left: -100%;
+      background-color: #555;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+      transition: 0.5s linear;
+    }
+    header ul.toggle{
+      left: 0;
+    }
+    header ul li{
+      line-height: normal;
+    }
+    header .menu,
+    header .close{
+      display: block;
+    }
+    header .logo{
+      width: initial;
+      margin-left: 20px ;
+      line-height: 70px;
+    }
+    section h2{
+      font-size: 1.4rem;
+    }
+    .Clock{
+      position: relative;
+      background: linear-gradient(270deg,#051817 , #0e3839);
+      display: flex;
+      margin: a;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      width: 350px;
+      color: #86f1f6;
+      text-shadow: 1px 1px 7px;
+      border-radius: 15px;
+      border: 2px solid silver;
+      box-shadow: 0 0 5px 25px;
+
+
+    }
+    .Clock section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+
+    }
+    .Clock section p {
+
+      font-size: 4rem;
+    }
+    .clock section small {
+      color: silver;
+      
+    }
+  }
