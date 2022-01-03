@@ -1,10 +1,9 @@
-import { Outlet } from "react-router-dom"
+import { Navigate, Outlet } from "react-router-dom"
 import { useStateValue } from "../context/StateProider"
-import Login from "./Login"
 
 function PrivateRoute() {
     const [{user}, dispatch] = useStateValue()
-    return user ?  <Outlet /> : <Login />
+    return user ?  <Outlet /> : <Navigate to='/admin-login' />
     
 }
 

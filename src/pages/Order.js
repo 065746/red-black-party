@@ -58,12 +58,12 @@ function Order() {
                             formArr={[
                                 {label: 'Full name', name: 'fullName', type: 'text',},
                                 {label: 'Email', name: 'email', type: 'email',},
-                                {label: 'Number', name: 'number', type: 'number',},
+                                {label: 'Phone Number', name: 'phoneNumber', type: 'number',},
                             ]}
                             formArr2={[
                                 {label: 'Full name', name: 'fullName', type: 'text',},
                                 {label: 'Email', name: 'email', type: 'email',},
-                                {label: 'Number', name: 'number', type: 'number',},
+                                {label: 'Phone Number', name: 'phoneNumber', type: 'number',},
                             ]}
                             submitBtn='Submit'
                             onSubmit={(data) => onSubmit(data)}
@@ -71,29 +71,59 @@ function Order() {
                             redirect={null}
                         />
                     )}
-                    {params.get('ticketType') === ('4 Boys' || '4 Girls') && (
+                    {params.get('ticketType') === '4 Boys'&& (
                         <Form 
                             title="Enter Your details"
                             ticketType={`Ticket for ${params.get('ticketType')}`}
                             formArr={[
                                 {label: 'Full name', name: 'fullName', type: 'text',},
                                 {label: 'Email', name: 'email', type: 'email',},
-                                {label: 'Number', name: 'number', type: 'number',},
+                                {label: 'Phone Number', name: 'phoneNumber', type: 'number',},
                             ]}
                             formArr2={[
                                 {label: 'Full name', name: 'fullName', type: 'text',},
                                 {label: 'Email', name: 'email', type: 'email',},
-                                {label: 'Number', name: 'number', type: 'number',},
+                                {label: 'Phone Number', name: 'phoneNumber', type: 'number',},
                             ]}
                             formArr3={[
                                 {label: 'Full name', name: 'fullName', type: 'text',},
                                 {label: 'Email', name: 'email', type: 'email',},
-                                {label: 'Number', name: 'number', type: 'number',},
+                                {label: 'Phone Number', name: 'phoneNumber', type: 'number',},
                             ]}
                             formArr4={[
                                 {label: 'Full name', name: 'fullName', type: 'text',},
                                 {label: 'Email', name: 'email', type: 'email',},
-                                {label: 'Number', name: 'number', type: 'number',},
+                                {label: 'Phone Number', name: 'phoneNumber', type: 'number',},
+                            ]}
+                            submitBtn='Submit'
+                            onSubmit={(data) => onSubmit(data)}
+                            successMsg={success}
+                            redirect={null}
+                        />
+                    )}
+                    {params.get('ticketType') === '4 Girls'&& (
+                        <Form 
+                            title="Enter Your details"
+                            ticketType={`Ticket for ${params.get('ticketType')}`}
+                            formArr={[
+                                {label: 'Full name', name: 'fullName', type: 'text',},
+                                {label: 'Email', name: 'email', type: 'email',},
+                                {label: 'Phone Number', name: 'phoneNumber', type: 'number',},
+                            ]}
+                            formArr2={[
+                                {label: 'Full name', name: 'fullName', type: 'text',},
+                                {label: 'Email', name: 'email', type: 'email',},
+                                {label: 'Phone Number', name: 'phoneNumber', type: 'number',},
+                            ]}
+                            formArr3={[
+                                {label: 'Full name', name: 'fullName', type: 'text',},
+                                {label: 'Email', name: 'email', type: 'email',},
+                                {label: 'Phone Number', name: 'phoneNumber', type: 'number',},
+                            ]}
+                            formArr4={[
+                                {label: 'Full name', name: 'fullName', type: 'text',},
+                                {label: 'Email', name: 'email', type: 'email',},
+                                {label: 'Phone Number', name: 'phoneNumber', type: 'number',},
                             ]}
                             submitBtn='Submit'
                             onSubmit={(data) => onSubmit(data)}

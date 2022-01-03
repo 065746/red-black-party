@@ -6,24 +6,31 @@ const prepareForm = (formArr) =>
     formArr.reduce((p, v) => ({...p, [v.name]: ''}), {})
 
 
-function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticketType, formArr2, formArr3, formArr4}) {
+function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticketType, adminForm, formArr2, formArr3, formArr4}) {
     const [form, setForm] = useState(prepareForm(formArr))
-    const [phone, setPhone] = useState(null)
+
+    const [phoneNumber1, setPhoneNumber1] = useState(null)
+    const [phoneNumber2, setPhoneNumber2] = useState(null)
+    const [phoneNumber3, setPhoneNumber3] = useState(null)
+    const [phoneNumber4, setPhoneNumber4] = useState(null)
  
     const onChange = (e) => 
         setForm((p) => ({...p, [e.target.name]: e.target.value}))
 
     const onSubmitHandler = () => 
-        onSubmit({...form, phoneNumber:phone}, setForm(prepareForm(formArr)))
+        onSubmit({...form, phoneNumber:{
+            phoneNumber1,
+            phoneNumber2,
+            phoneNumber3,
+            phoneNumber4,
+        }}, setForm(prepareForm(formArr)))
 
     const hasRedirect = !!redirect
-    console.log({...form, phoneNumber:phone})
-    console.log(phone)
     return (
         <form onSubmit={(e) => {
             e.preventDefault();
             onSubmitHandler()
-        }} className="w-full border-4 rounded-2xl border-gray-800 p-5 space-y-2 bg-fuchsia-900 shadow-md" autoComplete="off">
+        }} className={`w-full border-4 rounded-2xl border-gray-800 p-5 space-y-2 bg-fuchsia-900 shadow-md ${adminForm && 'border-0 !bg-transparent shadow-none max-w-xl mx-auto'} `} autoComplete="off">
             <h2 className="text-2xl font-medium text-center text-gray-200">{title}</h2>
             <p className='text-center underline text-white'>{ticketType}</p>
             {formArr.map(({label, name, type}, index) => (
@@ -34,8 +41,8 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                         placeholder="Enter phone number"
                         defaultCountry="MA"
                         className={'border border-gray-600 focus:ring-2 ring-purple-600 transition-all duration-200 w-full py-2 px-4 outline-none bg-white outline-none'}
-                        value={phone}
-                        onChange={setPhone}
+                        value={phoneNumber1}
+                        onChange={setPhoneNumber1}
                     />
                     ) : (
                         <input 
@@ -49,48 +56,77 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                     )}
                 </div>
             ))}
-            <br />
             {formArr2 && (
                 <>
+                    <br />
                     {formArr2.map(({label, name, type}, index) => (
                         <div key={index} className="last-of-type:mb-2">
                             <label className="font-semibold text-sm block m-2 text-white" htmlFor={name}>{label}</label>
-                            <input 
-                                name={name} 
-                                type={type} 
-                                className='border border-gray-600 focus:ring-2 ring-purple-600 transition-all duration-200 w-full py-2 px-4 outline-none' 
-                                placeholder={label} 
-                                value={form[name]}
-                                onChange={onChange}
+                            {type === 'number' ? (
+                            <PhoneInput
+                                placeholder="Enter phone number"
+                                defaultCountry="MA"
+                                className={'border border-gray-600 focus:ring-2 ring-purple-600 transition-all duration-200 w-full py-2 px-4 outline-none bg-white outline-none'}
+                                value={phoneNumber2}
+                                onChange={setPhoneNumber2}
                             />
+                    ) : (
+                        <input 
+                            name={name} 
+                            type={type} 
+                            className='border border-gray-600 focus:ring-2 ring-purple-600 transition-all duration-200 w-full py-2 px-4 outline-none' 
+                            placeholder={label} 
+                            value={form[name]}
+                            onChange={onChange}
+                        />
+                    )}
                         </div>
                     ))}
                 </>
             )}
-            <br />
             {formArr3 && (
                 <>
+                    <br />
                     {formArr3.map(({label, name, type}, index) => (
                         <div key={index} className="last-of-type:mb-2">
                             <label className="font-semibold text-sm block m-2 text-white" htmlFor={name}>{label}</label>
-                            <input 
-                                name={name} 
-                                type={type} 
-                                className='border border-gray-600 focus:ring-2 ring-purple-600 transition-all duration-200 w-full py-2 px-4 outline-none' 
-                                placeholder={label} 
-                                value={form[name]}
-                                onChange={onChange}
+                            {type === 'number' ? (
+                            <PhoneInput
+                                placeholder="Enter phone number"
+                                defaultCountry="MA"
+                                className={'border border-gray-600 focus:ring-2 ring-purple-600 transition-all duration-200 w-full py-2 px-4 outline-none bg-white outline-none'}
+                                value={phoneNumber3}
+                                onChange={setPhoneNumber3}
                             />
+                    ) : (
+                        <input 
+                            name={name} 
+                            type={type} 
+                            className='border border-gray-600 focus:ring-2 ring-purple-600 transition-all duration-200 w-full py-2 px-4 outline-none' 
+                            placeholder={label} 
+                            value={form[name]}
+                            onChange={onChange}
+                        />
+                    )}
                         </div>
                     ))}
                 </>
             )}
-            <br />
             {formArr4 && (
                 <>
+                    <br />
                     {formArr4.map(({label, name, type}, index) => (
                         <div key={index} className="last-of-type:mb-2">
                             <label className="font-semibold text-sm block m-2 text-white" htmlFor={name}>{label}</label>
+                            {type === 'number' ? (
+                            <PhoneInput
+                                placeholder="Enter phone number"
+                                defaultCountry="MA"
+                                className={'border border-gray-600 focus:ring-2 ring-purple-600 transition-all duration-200 w-full py-2 px-4 outline-none bg-white outline-none'}
+                                value={phoneNumber4}
+                                onChange={setPhoneNumber4}
+                            />
+                    ) : (
                             <input 
                                 name={name} 
                                 type={type} 
@@ -99,6 +135,7 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                                 value={form[name]}
                                 onChange={onChange}
                             />
+                    )}
                         </div>
                     ))}
                 </>
@@ -127,13 +164,6 @@ Form.defaultProps = {
     ],
     submitBtn: 'Sign in',
     onSubmit: (data) => console.log(data),
-    redirect: {
-        label: "Don't have an account ?",
-        link:{
-            label: "Register Now",
-            to: '/register'
-        }
-    }
 }
 
 export default Form
