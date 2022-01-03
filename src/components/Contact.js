@@ -20,6 +20,9 @@ function Contact() {
                     <input className="bg-transparent py-3 px-4 border text-white focus:ring-4 ring-blue-400 outline-none transition-all duration-200 rounded-sm" placeholder="Full name" type="text" />
                     <input className="bg-transparent py-3 px-4 border text-white  focus:ring-4 ring-blue-400 outline-none transition-all duration-200 rounded-sm" placeholder="Email" type="email" />
                     <textarea className="bg-transparent py-2 px-4 border text-white w-full h-72 focus:ring-4 ring-blue-400 outline-none transition-all duration-200 rounded-sm" placeholder="Message" name="" id=""></textarea>
+                <div className="flex justify-end w-full">
+                    <button className="bg-purple-800 text-white text-lg capitalize px-6 py-3 hover:bg-purple-700 active:bg-purple-900">Send</button>
+                </div>
                 </form>
             </div>
         </div>
