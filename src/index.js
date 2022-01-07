@@ -8,11 +8,11 @@ import StateProvider from './context/StateProider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-        <StateProvider initialState={initialState} reducer={reducer} >
-          <App />
-        </StateProvider>
+    <StateProvider initialState={initialState} reducer={reducer} >
+      <Router>
+        <App />
       </Router>
+    </StateProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
