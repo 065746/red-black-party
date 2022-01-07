@@ -19,12 +19,13 @@ function Contact() {
                         
                     </div>
                     <div className="flex items-center">
-                        <p className="text-base text-gray-200 space-x-2 flex justify-center">
+                        <a href="https://wa.me/00212767524320" target={'_blank'}>
                             <WhatsApp style={{
+                                
                                 fontSize: '40px'
-                            }}/>
-                        </p>
-                        <span className="text-gray-200">:0767524320</span>
+
+                            }} />
+                        </a>
                     </div>
                 </div> 
                 <form className="flex flex-col flex-grow xl:max-w-4xl space-y-3 sm:w-[500px] lg:w-[600px] ">
