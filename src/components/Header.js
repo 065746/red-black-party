@@ -25,7 +25,7 @@ function Header({ orderHeader }) {
             ${orderHeader && '!py-6 bg-opacity-100 bg-gray-900 sticky shadow-md'} transition-all duration-500 ease-out`}
         >
            <div onClick={() => navigate('/')} className='logo cursor-pointer' >
-                <img className='h-12 object-contain' src="https://mail.google.com/mail/u/0?ui=2&ik=6ec6c1887a&attid=0.1&permmsgid=msg-f:1721288684361968714&th=17e33ef04b4b6c4a&view=fimg&fur=ip&sz=s0-l75-ft&attbid=ANGjdJ-2-cBXnOz3cBXtx-htcvQUzos5Euc8tn4oUfHqOdjvccAchSMcZwKeXLNnHNZo1OX-v8npitru3yvZJPh4Sh50eWor3MGlDOVP9J-jxh1yGbNQyu48eV13LYw&disp=emb&realattid=ii_ky47rpsy0" alt="" />
+                <img className='h-12 object-contain' src="/logo2.png" alt="" />
                 {/* <h1 className='text-2xl font-medium'>Logo</h1> */}
             </div>
             <ul className={toggleMenu ? 'toggle' : ''} >
