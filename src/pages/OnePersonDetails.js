@@ -1,6 +1,6 @@
 import { useParams, useLocation } from "react-router-dom"
 import { useEffect, useState } from 'react'
-import { collection, doc, updateDoc } from "firebase/firestore"
+import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { db } from "../firebase"
 
 function OnePersonDetails() {
@@ -11,24 +11,25 @@ function OnePersonDetails() {
     useEffect(() => {
         const findUser = state.find(user => user.id === id)
         setUser([findUser])
-    }, [id])
-    console.log(...state)
+    }, [id, state, confirm])
     const confirmUser = async () => {
-        //  const docRef = collection(db, 'One Person')
-
          await updateDoc(doc(db, 'One Person', id), { 
-             perso1: {
-                ...state,
-                gender: {
-                    type: state.gender
-                },
-                status: 'Confirmed',
-            },
-            
+            status: 'Confirmed',
          }).then(() => setConfirm(true))
     }
-    console.log( 'user arr =>', user)
-    console.log( 'state arr =>', ...state) 
+    useEffect(() => {
+        const getConfirm = async () => {
+            const docRef =  doc(db, 'One Person', id);
+            const docSnap = await getDoc(docRef)
+            if(docSnap.data().status === 'Confirmed'){
+                setConfirm(true);
+            }
+            else {
+                setConfirm(false);
+            }
+        }
+        getConfirm()
+    }, [id])
     return (
         <div className='w-[calc(100%-300px)] px-10 py-7 ml-auto'>
             <div className="">

@@ -16,6 +16,7 @@ function OnePersonTable() {
                 dataArr.push({
                   id: snap.id,
                   ...snap.data().perso1,
+                  status: snap.data().status,
                   gender : snap.data().perso1.gender.type,
                   timestamp: moment(snap.data().timestamp.seconds*1000).format('MMMM Do YYYY')
                 })

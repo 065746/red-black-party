@@ -12,9 +12,15 @@ function Order() {
     const params = new URLSearchParams(search)
     const onSubmit = async (data) => {
         console.log(data)
-        const { perso1 } = data
+        const { perso1, perso2, } = data
         
-        if (!perso1.fullName || !perso1.phoneNumber || !perso1.email ) return;
+        if(params.get('ticketType') === 'One Person'){
+            if (!perso1.fullName || !perso1.phoneNumber || !perso1.email ) return;
+        }
+
+        if(params.get('ticketType') === 'Couple'){
+            if (!perso1.fullName || !perso1.phoneNumber || !perso1.email || !perso2.fullName || !perso2.phoneNumber || !perso2.email ) return;
+        }
 
         const sendDataToDb = await addDoc(collection(db ,`${params.get('ticketType')}`), {
             ...data, timestamp: serverTimestamp()

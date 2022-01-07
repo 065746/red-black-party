@@ -8,23 +8,18 @@ function Contact() {
                 <div className="max-w-xs flex flex-col justify-start space-y-3 mt-16">
                     <h3 className="text-4xl font-bold text-white">Contact info</h3>
                     <h4 className="text-xl text-gray-200 font-semibold">Amazing Company, Inc.</h4>
-                    <div className="text-base text-gray-200 space-x-2 flex">
+                    <div className="text-base text-gray-200 space-x-2 flex justify-center">
                         <a href="https://www.instagram.com/red_blackparty/" target={'_blank'}>
                             <Instagram style={{
-                                
                                 fontSize: '40px'
-
                             }} />
                         </a>
-                        
-                    </div>
-                    <div className="flex items-center">
-                        <p className="text-base text-gray-200 space-x-2 flex justify-center">
+                        <a href="https://wa.me/00212767524320" target={'_blank'}>
                             <WhatsApp style={{
+                                color: '#fff',
                                 fontSize: '40px'
-                            }}/>
-                        </p>
-                        <span className="text-gray-200">:0767524320</span>
+                            }} />
+                        </a>
                     </div>
                 </div> 
                 <form className="flex flex-col flex-grow xl:max-w-4xl space-y-3 sm:w-[500px] lg:w-[600px] ">

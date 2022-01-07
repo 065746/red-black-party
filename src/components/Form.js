@@ -31,8 +31,8 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                         ...form,
                         phoneNumber: phoneNumber1,
                         gender: gender,
-                        status: 'Not Confirmed'
-                    }
+                    },
+                    status: 'Not Confirmed'
                 }
             })
             return;
@@ -43,12 +43,14 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                 data: {
                     perso1:{
                         ...form,
-                    phoneNumber: phoneNumber1,
+                        phoneNumber: phoneNumber1,
+                        gender: 'Male'
                     },
                     perso2:{
                         ...form2,
                         phoneNumber: phoneNumber2,
-                    }
+                        gender: 'Female'
+                    },
                 }
             })
             return;
@@ -162,8 +164,8 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
             {params.get('ticketType') === 'One Person' && (
                 <div className="space-x-4 text-white">
                     <label className='w-full flex-grow flex flex-col text-gray-300 '>Genere :</label> <br></br>
-                    <label for="Man" className="w-full space-x-4"><input id="Man" type="radio" name="type" onChange={(e) => setGender({[e.target.name] : e.target.value})} value={'man'} /> Man</label>
-                    <label for="Woman" className="w-full space-x-4"><input id="Woman" type="radio" name="type" onChange={(e) => setGender({[e.target.name] : e.target.value})} value={'women'}/> Woman</label>
+                    <label for="Man" className="w-full space-x-4"><input id="Man" type="radio" name="type" onChange={(e) => setGender({[e.target.name] : e.target.value})} value={'Male'} /> Man</label>
+                    <label for="Woman" className="w-full space-x-4"><input id="Woman" type="radio" name="type" onChange={(e) => setGender({[e.target.name] : e.target.value})} value={'Female'}/> Woman</label>
                 </div>
             )}
             {formArr2 && (
