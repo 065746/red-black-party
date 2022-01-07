@@ -26,6 +26,7 @@ function Header({ orderHeader }) {
         >
            <div onClick={() => navigate('/')} className='logo cursor-pointer' >
                 <img className='h-12 object-contain' src="/logo.png" alt="" />
+                {/* <img className='h-12 object-contain' src="/logo2.png" alt="" /> */}
                 {/* <h1 className='text-2xl font-medium'>Logo</h1> */}
             </div>
             <ul className={toggleMenu ? 'toggle' : ''} >
