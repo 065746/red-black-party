@@ -51,6 +51,7 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                         phoneNumber: phoneNumber2,
                         gender: 'Female'
                     },
+                    status: "Not Confirmed"
                 }
             })
             return;
@@ -159,11 +160,10 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                         )}
                     </div>
                 </>
-
                 ))}
             {params.get('ticketType') === 'One Person' && (
                 <div className="space-x-4 text-white">
-                    <label className='w-full flex-grow flex flex-col text-gray-300 '>Genere :</label> <br></br>
+                    <label className='w-full flex-grow flex flex-col text-gray-300 '>Gender :</label> <br></br>
                     <label for="Man" className="w-full space-x-4"><input id="Man" type="radio" name="type" onChange={(e) => setGender({[e.target.name] : e.target.value})} value={'Male'} /> Man</label>
                     <label for="Woman" className="w-full space-x-4"><input id="Woman" type="radio" name="type" onChange={(e) => setGender({[e.target.name] : e.target.value})} value={'Female'}/> Woman</label>
                 </div>

@@ -18,6 +18,7 @@ import FourGirlsGroup from "./pages/FourGirlsGroup";
 import FourBoysTable from "./pages/FourBoysTable";
 import FourBoysGroup from "./pages/FourBoysGroup";
 import OnePersonDetails from "./pages/OnePersonDetails";
+import CoupleDetails from "./pages/CoupleDetails";
 
 
 
@@ -59,6 +60,7 @@ function App() {
               <Route path='customers/one-person' element={<OnePersonTable />} />
               <Route path='customers/one-person/:id' element={<OnePersonDetails />} />
               <Route path='customers/couple' element={<CoupleTable />} />
+              <Route path='customers/couple/:id' element={<CoupleDetails />} />
               <Route path='customers/4-girls' element={<FourGirlsTable />} />
               <Route path='customers/4-girls/:id' element={<FourGirlsGroup />} />
               <Route path='customers/4-boys' element={<FourBoysTable />} />

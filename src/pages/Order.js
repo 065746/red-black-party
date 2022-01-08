@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useLocation } from "react-router-dom"
-import { addDoc, collection, doc, serverTimestamp, setDoc } from 'firebase/firestore'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase'
 import Form from "../components/Form"
 import Header from "../components/Header"
@@ -50,7 +50,7 @@ function Order() {
                             ticketType={`Ticket for ${params.get('ticketType')}`}
                             formArr={[
                                 {label: 'Full name', name: 'fullName', type: 'text',},
-                                {label: 'Emai', name: 'email', type: 'email',},
+                                {label: 'Email', name: 'email', type: 'email',},
                                 {label: 'Phone Number', name: 'phoneNumber', type: 'number',},
                             ]}
                             params={params}
