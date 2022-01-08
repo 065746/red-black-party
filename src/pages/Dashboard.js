@@ -7,6 +7,7 @@ import { db } from "../firebase"
 import StatusCard from "../admin/StatusCard"
 import { Link } from "react-router-dom";
 import { chartOptions } from "../assets/chartOptions";
+import { useNavigate } from 'react-router-dom'
 
 function Dashboard() {
     const [loading, setLoading] = useState(true)
@@ -14,6 +15,7 @@ function Dashboard() {
     const [coupleArr, setCoupleArr] = useState([])
     const [fourBoysArr, setFourBoysArr] = useState([])
     const [fourGirlsArr , setFourGirlsArr] = useState([])
+    const navigate = useNavigate()
     useEffect(() => {
         const unsabscribe = onSnapshot(collection(db,'One Person'), (snapshot) => {
             const dataArr = []
@@ -86,10 +88,10 @@ function Dashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <div className="">
                     <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                        <StatusCard Icon={UserIcon} title='One Person' count={userRows.length} />
-                        <StatusCard Icon={UsersIcon} title='Couple' count={coupleArr.length} />
-                        <StatusCard Icon={UserGroupIcon} title='4 Boys' count={fourBoysArr.length} />
-                        <StatusCard Icon={UserGroupIcon} title='4 Girls' count={fourGirlsArr.length} />
+                        <StatusCard Icon={UserIcon} title='One Person' count={userRows.length} redirect={() => navigate('/admin/customers/one-person')} />
+                        <StatusCard Icon={UsersIcon} title='Couple' count={coupleArr.length} redirect={() => navigate('/admin/customers/couple')} />
+                        <StatusCard Icon={UserGroupIcon} title='4 Boys' count={fourBoysArr.length} redirect={() => navigate('/admin/customers/4-boys')} />
+                        <StatusCard Icon={UserGroupIcon} title='4 Girls' count={fourGirlsArr.length} redirect={() => navigate('/admin/customers/4-girls')}/>
                     </div>
                 </div>
                 <div className="w-full">

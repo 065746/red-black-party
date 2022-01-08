@@ -24,27 +24,24 @@ import CoupleDetails from "./pages/CoupleDetails";
 
 function App() {
   const [{}, dispatch] = useStateValue()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
-    setLoading(true)
-    const unsabscribe = onAuthStateChanged(auth, (user) => {
-       new Promise((resolve, reject) => {
-        if(user){
-          dispatch({
-            type: 'SET_USER',
-            user: user
-          })
-        } else {
-          dispatch({
-            type: 'SET_USER',
-            user: null
-          })
+    onAuthStateChanged(auth, (user) => {
+      if(user){
+        dispatch({
+          type: 'SET_USER',
+          user: user
+        })
+      } else {
+        dispatch({
+          type: 'SET_USER',
+          user: null
+        })
       }
-      resolve()
-      }).then(() => setLoading(false))
+      setLoading(false)
   })
-    return () => unsabscribe()
-}, [dispatch])
+    // return () => unsabscribe()
+}, [])
   const location = useLocation()
    return (
      <div className="">

@@ -76,7 +76,8 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                     perso4:{
                         ...form4,
                         phoneNumber: phoneNumber4,
-                    }
+                    },
+                    status: "Not Confirmed"
                 }
             })
             return;
@@ -101,7 +102,8 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                     perso4:{
                         ...form4,
                         phoneNumber: phoneNumber4,
-                    }
+                    },
+                    status: "Not Confirmed"
                 }
             })
             return;

@@ -1,5 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid"
 import { collection, onSnapshot } from "firebase/firestore"
+import moment from "moment"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { db } from "../firebase"
@@ -14,7 +15,8 @@ function FourGirlsTable() {
             snapshot.forEach((snap) => {
                 dataArr.push({
                   id: snap.id,
-                  ...snap.data()
+                  ...snap.data(),
+                  timestamp: moment(snap.data().timestamp.seconds*1000).format('MMMM Do YYYY')
                 })
               })
               setUserRows(dataArr)
@@ -24,7 +26,8 @@ function FourGirlsTable() {
     }, [loading])
     const columns = [
         { field: 'id', headerName: 'ID', width: 180 },
-        { field: 'timestamp', headerName: "Timestamp", width: 260 },
+        { field: 'timestamp', headerName: "Timestamp", width: 180 },
+        { field: 'status', headerName: "Status", width: 180 },
         { field: 'view', headerName: "View", width: 260, renderCell: (params) => (
             <div className="">
                 <button 

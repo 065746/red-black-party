@@ -26,7 +26,7 @@ function Order() {
             ...data, timestamp: serverTimestamp()
         }).then((res) => {
             console.log(res)
-            setSuccess('Thank you for Submitting, We call you')
+            setSuccess('Thank you for Submitting, We will call you')
         }).then(() => {
             setTimeout(() => {
                 setSuccess(null)
