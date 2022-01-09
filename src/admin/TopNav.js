@@ -1,20 +1,10 @@
-import { BellIcon, SearchIcon } from "@heroicons/react/outline"
+import { MenuIcon, SearchIcon } from "@heroicons/react/outline"
 import { signOut } from "firebase/auth"
-import { Link, useNavigate } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 import user__menu from "../assets/user__menu"
 import { useStateValue } from "../context/StateProider"
 import { auth } from "../firebase"
 import Dropdown from "./Dropdown"
-
-const notificationItem = (item, index) => {
-    const {content, icon} = item
-    return (
-        <div className="flex items-center p-5 hover:bg-gray-200 space-x-2" key={index}>
-            {icon} 
-            <span>{content}</span>
-        </div>
-    )
-}
 
 const userToggler = (user) => {
     return (
@@ -41,14 +31,25 @@ const renderUser = (item, index,) => {
 }
 
 function TopNav() {
-    const [{user}, dispatch] = useStateValue()
-    const navigate = useNavigate()
+    const [{user, hide, search}, dispatch] = useStateValue()
+    const location = useLocation()
+
+    const handleSidebar = () => {
+        dispatch({
+            type: 'SET_HIDE',
+            hide: !hide,
+        })
+    }
     return (
-        <div className="ml-[300px] p-8 flex items-center justify-between h-[110px] ">
-            <div className="relative h-12 bg-white flex items-center shadow-md rounded-md overflow-hidden p-2">
-                <input type="text" className="h-full w-full py-10 pr-16 pl-5 outline-none text-base rounded-md bg-white text-gray-600" placeholder='Search here...' />
-                <SearchIcon className="h-6 absolute right-5" />
-            </div>
+        <div className={`ml-[300px] p-8 flex items-center justify-between h-[110px] transition-all duration-200 ${hide && '!ml-0'}`}>
+            {location.pathname !== "/admin/dashboard" ? (
+                <div className="relative h-12 bg-white flex items-center shadow-md rounded-md overflow-hidden p-2">
+                    <input type="text" value={search} onChange={(e) => dispatch({type: 'SET_SEARCH', search: e.target.value })} className="h-full w-full py-10 pr-16 pl-5 outline-none text-base rounded-md bg-white text-gray-600" placeholder='Search by full name' />
+                    <SearchIcon className="h-6 absolute right-5" />
+                </div>
+            ) : (
+                <h1 className="text-4xl font-semibold" >Hello</h1>
+            )}
             <div className="flex items-center">
                 <div className="ml-8">
                     <Dropdown
@@ -58,13 +59,9 @@ function TopNav() {
                         logOut={async () => await signOut(auth).then(() => console.log('admin logged out'))}
                     />
                 </div>
-                <div className="ml-8">
+                <div onClick={handleSidebar} className="ml-8">
                     <Dropdown
-                        Icon={BellIcon} 
-                        badge={12}
-                        // contentData={Notification}
-                        renderItems={(item, index) => notificationItem(item, index)}
-                        renderFooter={() => <Link to='/' >View All</Link> }
+                        Icon={MenuIcon} 
                     />
                 </div>
             </div>

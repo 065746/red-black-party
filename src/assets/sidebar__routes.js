@@ -8,7 +8,7 @@ export default [
     },
     {
         display_name: "Customers",
-        route: "/admin/customers/one-person" && "/admin/customers/couple" && "/admin/customers/4-girls" && "/admin/customers/4-boys",
+        route: "/admin/customers/one-person",
         icon: <UserGroupIcon className='h-6' />
     },
 ]

@@ -14,7 +14,7 @@ function Contact() {
                                 fontSize: '40px'
                             }} />
                         </a>
-                        <a href="https://wa.me/00212767524320" target={'_blank'}>
+                        <a href="https://wa.me/+212767524320" target={'_blank'}>
                             <WhatsApp style={{
                                 color: '#fff',
                                 fontSize: '40px'

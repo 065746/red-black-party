@@ -5,32 +5,45 @@ import moment from "moment"
 import { useLocation, useNavigate } from "react-router-dom"
 import Spinner from "../components/Spinner"
 import { db } from "../firebase"
+import { useStateValue } from "../context/StateProider"
 
 function OnePersonTable() {
     const [loading, setLoading] = useState(true)
     const [userRows, setUserRows] = useState([])
+
+    const [{hide, search}, dispatch] = useStateValue()
+
     const navigate = useNavigate()
     const { state } = useLocation()
     useEffect(() => {
-        const unsabscribe = onSnapshot(collection(db,'Couple'), (snapshot) => {
-            const dataArr = []
-            snapshot.forEach((snap) => {
-                dataArr.push({
-                  id: snap.id,
-                  ...snap.data().perso1,
-                  fullName2: snap.data().perso2.fullName,
-                  email2: snap.data().perso2.email,
-                  phoneNumber2: snap.data().perso2.phoneNumber,
-                  gender2: snap.data().perso2.gender,
-                  status: snap.data().status,
-                  timestamp: moment(snap.data().timestamp.seconds*1000).format('MMMM Do YYYY')
-                })
-              })
-              setUserRows(dataArr)
-        })
-        setLoading(false)
-        return () => unsabscribe()
-    }, [loading, state])
+        if(search){
+            const newUsers = userRows.filter(user => {
+                if (user.fullName.toLowerCase().includes(search.toLowerCase()) || user.fullName2.toLowerCase().includes(search.toLowerCase())) {
+                 return user
+               }
+             })
+             setUserRows(newUsers)
+        } else {
+            const unsabscribe = onSnapshot(collection(db,'Couple'), (snapshot) => {
+                const dataArr = []
+                snapshot.forEach((snap) => {
+                    dataArr.push({
+                      id: snap.id,
+                      ...snap.data().perso1,
+                      fullName2: snap.data().perso2.fullName,
+                      email2: snap.data().perso2.email,
+                      phoneNumber2: snap.data().perso2.phoneNumber,
+                      gender2: snap.data().perso2.gender,
+                      status: snap.data().status,
+                      timestamp: moment(snap.data().timestamp.seconds*1000).format('MMMM Do YYYY')
+                    })
+                  })
+                  setUserRows(dataArr)
+            })
+            setLoading(false)
+            return () => unsabscribe()
+        }
+    }, [loading, state, search])
     
     const columns = [
         { field: 'id', headerName: 'ID', width: 180 },
@@ -54,7 +67,8 @@ function OnePersonTable() {
 
       ];
     return (
-        <div className="h-screen w-[calc(100%-300px)] ml-auto px-10 pb-8">
+        <div className={`h-screen w-[calc(100%-300px)] transition-all duration-200 ml-auto ${hide && '!w-full'} px-10 pb-8`}>
+
             {!userRows.length ? <Spinner /> 
                        :  <DataGrid
                             rows={userRows} 

@@ -8,13 +8,17 @@ import StatusCard from "../admin/StatusCard"
 import { Link } from "react-router-dom";
 import { chartOptions } from "../assets/chartOptions";
 import { useNavigate } from 'react-router-dom'
+import { useStateValue } from "../context/StateProider";
+import moment from "moment";
 
 function Dashboard() {
     const [loading, setLoading] = useState(true)
-    const [userRows, setUserRows] = useState([])
+    const [onePerson, setOnePerson] = useState([])
     const [coupleArr, setCoupleArr] = useState([])
     const [fourBoysArr, setFourBoysArr] = useState([])
     const [fourGirlsArr , setFourGirlsArr] = useState([])
+
+    const [{hide}, dispatch] = useStateValue()
     const navigate = useNavigate()
     useEffect(() => {
         const unsabscribe = onSnapshot(collection(db,'One Person'), (snapshot) => {
@@ -22,10 +26,11 @@ function Dashboard() {
             snapshot.forEach((snap) => {
                 dataArr.push({
                   id: snap.id,
-                  ...snap.data()
+                  ...snap.data().perso1,
+                  timestamp: moment(snap.data().timestamp.seconds*1000).format('MMMM Do YYYY')
                 })
               })
-              setUserRows(dataArr)
+              setOnePerson(dataArr)
         })
         setLoading(false)
         return () => unsabscribe()
@@ -37,7 +42,8 @@ function Dashboard() {
             snapshot.forEach((snap) => {
                 dataArr.push({
                   id: snap.id,
-                  ...snap.data()
+                  ...snap.data(),
+                  timestamp: moment(snap.data().timestamp.seconds*1000).format('MMMM Do YYYY')
                 })
               })
               setCoupleArr(dataArr)
@@ -45,6 +51,9 @@ function Dashboard() {
         setLoading(false)
         return () => unsabscribe()
     }, [db, loading])
+
+    console.log(coupleArr)
+
 
     useEffect(() => {
         const unsabscribe = onSnapshot(collection(db,'4 Boys'), (snapshot) => {
@@ -80,15 +89,16 @@ function Dashboard() {
         { field: 'id', headerName: 'ID', width: 180 },
         { field: 'fullName', headerName: 'Full Name', width: 150 },
         { field: 'phoneNumber', headerName: 'Phone Number', width: 150 },
-        { field: 'email', headerName: 'Email', width: 150 },
+        { field: 'email', headerName: 'Email', width: 220 },
+        { field: 'timestamp', headerName: 'Timestamp', width: 150 },
       ];
     return (
-        <div className='ml-[300px] px-6 py-2'>
-            <h2 className=''>Dashboard</h2>
+        <div className={`ml-[300px] transition-all duration-200  px-6 py-2 ${hide && 'ml-0'}`}>
+            <h2 className='text-3xl mb-3'>Dashboard</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <div className="">
                     <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                        <StatusCard Icon={UserIcon} title='One Person' count={userRows.length} redirect={() => navigate('/admin/customers/one-person')} />
+                        <StatusCard Icon={UserIcon} title='One Person' count={onePerson.length} redirect={() => navigate('/admin/customers/one-person')} />
                         <StatusCard Icon={UsersIcon} title='Couple' count={coupleArr.length} redirect={() => navigate('/admin/customers/couple')} />
                         <StatusCard Icon={UserGroupIcon} title='4 Boys' count={fourBoysArr.length} redirect={() => navigate('/admin/customers/4-boys')} />
                         <StatusCard Icon={UserGroupIcon} title='4 Girls' count={fourGirlsArr.length} redirect={() => navigate('/admin/customers/4-girls')}/>
@@ -108,7 +118,7 @@ function Dashboard() {
             <div className="h-screen py-7 space-y-5">
                 <h2 className='text-2xl font-semibold'>Recent Submitted Clients</h2>
                 <DataGrid 
-                    rows={userRows} 
+                    rows={onePerson} 
                     columns={columns}
                     checkboxSelection
                 />

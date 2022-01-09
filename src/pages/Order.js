@@ -15,7 +15,7 @@ function Order() {
         const { perso1, perso2, } = data
         
         if(params.get('ticketType') === 'One Person'){
-            if (!perso1.fullName || !perso1.phoneNumber || !perso1.email ) return;
+            if (!perso1.fullName || !perso1.phoneNumber || !perso1.email || !perso1.gender.type ) return;
         }
 
         if(params.get('ticketType') === 'Couple'){
@@ -24,8 +24,7 @@ function Order() {
 
         const sendDataToDb = await addDoc(collection(db ,`${params.get('ticketType')}`), {
             ...data, timestamp: serverTimestamp()
-        }).then((res) => {
-            console.log(res)
+        }).then(() => {
             setSuccess('Thank you for Submitting, We will call you')
         }).then(() => {
             setTimeout(() => {

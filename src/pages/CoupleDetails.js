@@ -2,12 +2,16 @@ import { useParams, useLocation } from "react-router-dom"
 import { useEffect, useState } from 'react'
 import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { db } from "../firebase"
+import { useStateValue } from "../context/StateProider"
 
 function OnePersonDetails() {
     const [user, setUser] = useState([])
     const { id } = useParams()
     const { state } = useLocation()
     const [confirm, setConfirm] = useState(false)
+
+    const [{hide}, dispatch] = useStateValue()
+
     useEffect(() => {
         const findUser = state.find(user => user.id === id)
         setUser([findUser])
@@ -31,7 +35,7 @@ function OnePersonDetails() {
         getConfirm()
     }, [id])
     return (
-        <div className='w-[calc(100%-300px)] px-10 py-7 ml-auto'>
+        <div className={`w-[calc(100%-300px)] px-10 py-7 transition-all duration-200 ml-auto ${hide && '!w-full'}`}>
             <div className="">
                 {user.map((item, index) => (
                 <div  key={index} className="mb-6">

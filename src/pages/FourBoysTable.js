@@ -24,6 +24,7 @@ function FourGirlsTable() {
         setLoading(false)
         return () => unsabscribe()
     }, [loading])
+    console.log(userRows)
     const columns = [
         { field: 'id', headerName: 'ID', width: 180 },
         { field: 'timestamp', headerName: "Timestamp", width: 180 },
