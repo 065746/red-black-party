@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react"
 import { DataGrid } from "@mui/x-data-grid"
-import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore"
+import { collection, onSnapshot } from "firebase/firestore"
 import { useNavigate } from "react-router-dom"
 import moment from "moment"
 import { db } from "../firebase"
 import { useStateValue } from "../context/StateProider"
 import Spinner from "../components/Spinner"
+import Modal from "../admin/Modal"
 
 function OnePersonTable() {
     const [loading, setLoading] = useState(true)
     const [userRows, setUserRows] = useState([])
+    const [open, setOpen] = useState(false) 
+    const [findDoc, setFindDoc] = useState('')
+
     const navigate = useNavigate()
     const [{hide, search}, dispatch] = useStateValue()
 
@@ -50,7 +54,10 @@ function OnePersonTable() {
         { field: 'timestamp', headerName: 'Timestamp', width: 150 },
         { field: 'view', headerName: 'View', width: 150, renderCell: (params) => (
             <div className="space-x-2">
-                <button onClick={async () => await deleteDoc(doc(db, 'One Person', params.row.id))} className="px-3 py-2 bg-red-700 rounded-full text-white">Delete</button>
+                <button onClick={() => {
+                    setOpen(true)
+                    setFindDoc(params.row.id)
+                }} className="px-3 py-2 bg-red-700 rounded-full text-white">Delete</button>
                 <button onClick={() => navigate(`/admin/customers/one-person/${params.row.id}`, {
                     state: userRows
                 })} className="px-3 py-2 bg-green-700 rounded-full text-white">View</button>
@@ -66,6 +73,7 @@ function OnePersonTable() {
                             columns={columns}
                             checkboxSelection
                             />}
+                    <Modal open={open} setOpen={setOpen} document={'One Person'} id={findDoc} />
         </div>
     )
 }

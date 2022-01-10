@@ -11,7 +11,6 @@ function Order() {
     const [success, setSuccess] = useState(null)
     const params = new URLSearchParams(search)
     const onSubmit = async (data) => {
-        console.log(data)
         const { perso1, perso2, } = data
         
         if(params.get('ticketType') === 'One Person'){
