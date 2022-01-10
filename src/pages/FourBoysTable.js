@@ -45,6 +45,7 @@ function FourGirlsTable() {
     console.log(userRows)
     return (
         <div className="h-screen w-[calc(100%-300px)] ml-auto px-10 pb-8">
+            <h2 className="text-center text-3xl font-semibold mb-7">"Four Boys" Table</h2>
             <DataGrid
                 rows={userRows} 
                 columns={columns}

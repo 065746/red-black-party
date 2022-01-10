@@ -68,7 +68,7 @@ function OnePersonTable() {
       ];
     return (
         <div className={`h-screen w-[calc(100%-300px)] transition-all duration-200 ml-auto ${hide && '!w-full'} px-10 pb-8`}>
-
+            <h2 className="text-center text-3xl font-semibold mb-7">"Couple" Table</h2>
             {!userRows.length ? <Spinner /> 
                        :  <DataGrid
                             rows={userRows} 

@@ -11,7 +11,7 @@ function Order() {
     const [success, setSuccess] = useState(null)
     const params = new URLSearchParams(search)
     const onSubmit = async (data) => {
-        const { perso1, perso2, } = data
+        const { perso1, perso2, perso3, perso4} = data
         
         if(params.get('ticketType') === 'One Person'){
             if (!perso1.fullName || !perso1.phoneNumber || !perso1.email || !perso1.gender.type ) return;
@@ -19,6 +19,16 @@ function Order() {
 
         if(params.get('ticketType') === 'Couple'){
             if (!perso1.fullName || !perso1.phoneNumber || !perso1.email || !perso2.fullName || !perso2.phoneNumber || !perso2.email ) return;
+        }
+
+        if(params.get('ticketType') === '4 Boys'){
+            if (!perso1.fullName || !perso1.phoneNumber || !perso1.email || !perso2.fullName || !perso2.phoneNumber || !perso2.email 
+                || !perso3.fullName || !perso3.phoneNumber || !perso3.email || !perso4.fullName || !perso4.phoneNumber || !perso4.email ) return;
+        }
+
+        if(params.get('ticketType') ===  '4 Girls'){
+            if (!perso1.fullName || !perso1.phoneNumber || !perso1.email || !perso2.fullName || !perso2.phoneNumber || !perso2.email 
+                || !perso3.fullName || !perso3.phoneNumber || !perso3.email || !perso4.fullName || !perso4.phoneNumber || !perso4.email ) return;
         }
 
         const sendDataToDb = await addDoc(collection(db ,`${params.get('ticketType')}`), {
