@@ -3,11 +3,16 @@ import { collection, onSnapshot } from "firebase/firestore"
 import moment from "moment"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Modal from "../admin/Modal"
+import Spinner from "../components/Spinner"
 import { db } from "../firebase"
 
 function FourGirlsTable() {
     const [loading, setLoading] = useState(true)
     const [userRows, setUserRows] = useState([])
+    const [open, setOpen] = useState(false) 
+    const [findDoc, setFindDoc] = useState('')
+
     const navigate = useNavigate()
     useEffect(() => {
         const unsabscribe = onSnapshot(collection(db,'4 Boys'), (snapshot) => {
@@ -30,15 +35,24 @@ function FourGirlsTable() {
         { field: 'timestamp', headerName: "Timestamp", width: 180 },
         { field: 'status', headerName: "Status", width: 180 },
         { field: 'view', headerName: "View", width: 260, renderCell: (params) => (
-            <div className="">
+            <div className="space-x-2">
+                <button onClick={() => {
+                    setOpen(true)
+                    setFindDoc(params.row.id)
+                }} className="px-3 py-2 bg-red-700 rounded-full text-white"
+                >
+                    Delete
+                </button>
                 <button 
-                    className="bg-green-800 text-white px-3 py-1 rounded-full" 
+                    className="bg-green-800 text-white px-3 py-2 rounded-full" 
                     onClick={() => navigate(`/admin/customers/4-boys/${params.row.id}`,{
                         state:{
                             userRows,
                         }
                     })} 
-                >View group</button>
+                >
+                    View group
+                </button>
             </div>
         )  },
       ];
@@ -46,11 +60,14 @@ function FourGirlsTable() {
     return (
         <div className="h-screen w-[calc(100%-300px)] ml-auto px-10 pb-8">
             <h2 className="text-center text-3xl font-semibold mb-7">"Four Boys" Table</h2>
-            <DataGrid
-                rows={userRows} 
-                columns={columns}
-                checkboxSelection
-            />
+            {loading ? <Spinner />
+                     : <DataGrid
+                        rows={userRows} 
+                        columns={columns}
+                        checkboxSelection
+                    />
+            }
+            <Modal open={open} setOpen={setOpen} document={'4 Boys'} id={findDoc} />
         </div>
     )
 }

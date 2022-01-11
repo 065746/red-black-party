@@ -47,7 +47,7 @@ function Order() {
         <div>
             <Header orderHeader />
             <div style={{
-                background: 'rgb(2,0,36)',
+                backgroundColor: 'rgb(2,0,36)',
                 background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(116,9,121,1) 44%, rgba(89,56,152,1) 100%, rgba(0,212,255,1) 100%)',
             }} className="min-h-[92vh] py-28 flex justify-center items-center flex-col relative overflow-y-hidden px-6 ">
                 <h3 className="absolute top-[105px] md:top-20 text-3xl text-white">red&black party</h3>

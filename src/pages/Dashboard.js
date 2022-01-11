@@ -52,9 +52,6 @@ function Dashboard() {
         return () => unsabscribe()
     }, [db, loading])
 
-    console.log(coupleArr)
-
-
     useEffect(() => {
         const unsabscribe = onSnapshot(collection(db,'4 Boys'), (snapshot) => {
             const dataArr = []
