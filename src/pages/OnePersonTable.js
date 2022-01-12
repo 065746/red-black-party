@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { DataGrid } from "@mui/x-data-grid"
-import { collection, onSnapshot } from "firebase/firestore"
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore"
 import { useNavigate } from "react-router-dom"
 import moment from "moment"
 import { db } from "../firebase"
@@ -26,7 +26,7 @@ function OnePersonTable() {
              })
              setUserRows(newUsers)
         } else {
-            const unsabscribe = onSnapshot(collection(db,'One Person'), (snapshot) => {
+            const unsabscribe = onSnapshot(query(collection(db,'One Person'), orderBy('timestamp', 'desc')), (snapshot) => {
                 const dataArr = []
                 snapshot.forEach((snap) => {
                     dataArr.push({

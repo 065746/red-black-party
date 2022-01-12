@@ -4,6 +4,7 @@ import moment from "moment"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Modal from "../admin/Modal"
+import { useStateValue } from "../context/StateProider"
 import Spinner from "../components/Spinner"
 import { db } from "../firebase"
 
@@ -12,6 +13,7 @@ function FourGirlsTable() {
     const [userRows, setUserRows] = useState([])
     const [open, setOpen] = useState(false) 
     const [findDoc, setFindDoc] = useState('')
+    const [{hide}, dispatch] = useStateValue()
 
     const navigate = useNavigate()
     useEffect(() => {
@@ -56,9 +58,8 @@ function FourGirlsTable() {
             </div>
         )  },
       ];
-    console.log(userRows)
     return (
-        <div className="h-screen w-[calc(100%-300px)] ml-auto px-10 pb-8">
+        <div className={`h-screen w-[calc(100%-300px)] ml-auto px-10 pb-8 ${hide && '!w-full'}`}>
             <h2 className="text-center text-3xl font-semibold mb-7">"Four Boys" Table</h2>
             {loading ? <Spinner />
                      : <DataGrid

@@ -1,4 +1,4 @@
-import { AdjustmentsIcon, ChartBarIcon, ChevronDownIcon, ChevronUpIcon, CogIcon, GiftIcon, InboxIcon, ShoppingBagIcon, ShoppingCartIcon, UserGroupIcon, UserIcon, ViewGridIcon } from '@heroicons/react/outline'
+import { ChevronDownIcon, ChevronUpIcon, UserGroupIcon, UserIcon, UsersIcon, ViewGridIcon } from '@heroicons/react/outline'
 
 export default [
     {
@@ -20,17 +20,17 @@ export default [
             {
                 title: 'Couple',
                 path: '/admin/customers/couple',
-                icon: <UserIcon className='h-5 text-gray-200' />,
+                icon: <UsersIcon className='h-5 text-gray-200' />,
             },
             {
                 title: '4 Boys',
                 path: '/admin/customers/4-boys',
-                icon: <UserIcon className='h-5 text-gray-200' />,
+                icon: <UserGroupIcon className='h-5 text-gray-200' />,
             },
             {
                 title: '4 Girls',
                 path: '/admin/customers/4-girls',
-                icon: <UserIcon className='h-5 text-gray-200' />,
+                icon: <UserGroupIcon className='h-5 text-gray-200' />,
             },
         ]
     },

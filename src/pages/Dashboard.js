@@ -2,14 +2,13 @@ import { useEffect, useState } from "react"
 import { UserGroupIcon, UserIcon, UsersIcon } from '@heroicons/react/outline'
 import { DataGrid } from '@mui/x-data-grid';
 import { collection, onSnapshot } from "firebase/firestore"
-import Chart from 'react-apexcharts'
 import { db } from "../firebase"
 import StatusCard from "../admin/StatusCard"
 import { Link } from "react-router-dom";
-import { chartOptions } from "../assets/chartOptions";
 import { useNavigate } from 'react-router-dom'
 import { useStateValue } from "../context/StateProider";
 import moment from "moment";
+import ChartTable from "../admin/ChartTable";
 
 function Dashboard() {
     const [loading, setLoading] = useState(true)
@@ -102,14 +101,7 @@ function Dashboard() {
                     </div>
                 </div>
                 <div className="w-full">
-                    <div className="card h-full max-h-64 shadow-md rounded-md">
-                        <Chart 
-                            options={chartOptions.options}
-                            series={chartOptions.series}
-                            type='line'
-                            height='100%'
-                        />
-                    </div>
+                    <ChartTable />
                 </div>
             </div>
             <div className="h-screen py-7 space-y-5">
