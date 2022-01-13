@@ -19,7 +19,8 @@ import FourBoysTable from "./pages/FourBoysTable";
 import FourBoysGroup from "./pages/FourBoysGroup";
 import OnePersonDetails from "./pages/OnePersonDetails";
 import CoupleDetails from "./pages/CoupleDetails";
-import QrCodeGenrator from "./pages/QrCodeGenrator";
+import QrCodeOnePersonGenrator from "./pages/QrCodeOnePersonGenrator";
+import QrCodeCoupleGenerator from "./pages/QrCodeCoupleGenerator";
 
 
 
@@ -56,9 +57,10 @@ function App() {
               <Route index path='customers' element={<Customers  />} />
               <Route path='customers/one-person' element={<OnePersonTable />} />
               <Route path='customers/one-person/:id' element={<OnePersonDetails />} />
-              <Route path='customers/one-person/:id/qrcode' element={<QrCodeGenrator />} />
+              <Route path='customers/one-person/:id/qrcode' element={<QrCodeOnePersonGenrator />} />
               <Route path='customers/couple' element={<CoupleTable />} />
               <Route path='customers/couple/:id' element={<CoupleDetails />} />
+              <Route path='customers/couple/:id/qrcode' element={<QrCodeCoupleGenerator />} />
               <Route path='customers/4-girls' element={<FourGirlsTable />} />
               <Route path='customers/4-girls/:id' element={<FourGirlsGroup />} />
               <Route path='customers/4-boys' element={<FourBoysTable />} />

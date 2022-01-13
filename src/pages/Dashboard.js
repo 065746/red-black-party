@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { UserGroupIcon, UserIcon, UsersIcon } from '@heroicons/react/outline'
 import { DataGrid } from '@mui/x-data-grid';
-import { collection, onSnapshot } from "firebase/firestore"
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore"
 import { db } from "../firebase"
 import StatusCard from "../admin/StatusCard"
 import { Link } from "react-router-dom";
@@ -20,7 +20,7 @@ function Dashboard() {
     const [{hide}, dispatch] = useStateValue()
     const navigate = useNavigate()
     useEffect(() => {
-        const unsabscribe = onSnapshot(collection(db,'One Person'), (snapshot) => {
+        const unsabscribe = onSnapshot(query(collection(db,'One Person'), orderBy('timestamp', 'desc')), (snapshot) => {
             const dataArr = []
             snapshot.forEach((snap) => {
                 dataArr.push({

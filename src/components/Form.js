@@ -158,6 +158,7 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                                 placeholder={label} 
                                 value={form[name]}
                                 onChange={(e) => setForm((p) => ({...p, [e.target.name]: e.target.value}))}
+                                required
                             />
                         )}
                     </div>
@@ -192,6 +193,7 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                             placeholder={label} 
                             value={form2[name]}
                             onChange={(e) => setForm2((p) => ({...p, [e.target.name]: e.target.value}))}
+                            required
                         />
                     )}
                         </div>
@@ -220,6 +222,7 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                             placeholder={label} 
                             value={form3[name]}
                             onChange={(e) => setForm3((p) => ({...p, [e.target.name]: e.target.value}))}
+                            required
                         />
                     )}
                         </div>
@@ -248,6 +251,7 @@ function Form({ title, formArr, submitBtn, onSubmit, successMsg, redirect, ticke
                                 placeholder={label} 
                                 value={form4[name]}
                                 onChange={(e) => setForm4((p) => ({...p, [e.target.name]: e.target.value}))}
+                                required
                             />
                     )}
                         </div>

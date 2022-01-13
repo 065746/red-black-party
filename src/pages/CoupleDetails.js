@@ -1,4 +1,4 @@
-import { useParams, useLocation } from "react-router-dom"
+import { useParams, useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useState } from 'react'
 import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { db } from "../firebase"
@@ -8,6 +8,7 @@ function OnePersonDetails() {
     const [user, setUser] = useState([])
     const { id } = useParams()
     const { state } = useLocation()
+    const navigate = useNavigate()
     const [confirm, setConfirm] = useState(false)
 
     const [{hide}, dispatch] = useStateValue()
@@ -63,7 +64,7 @@ function OnePersonDetails() {
             </div>
             <div className="">
                 {!confirm ? <button onClick={confirmUser} className="text-white px-5 py-2 bg-green-800 hover:bg-green-700 active:bg-green-900">Confirm</button>
-                         : <button className="text-white px-5 py-2 bg-blue-800 hover:bg-blue-700 active:bg-blue-900">Send Qr Code</button>}
+                         : <button onClick={() => navigate(`/admin/customers/couple/${id}/qrcode`, { state: user })} className="text-white px-5 py-2 bg-blue-800 hover:bg-blue-700 active:bg-blue-900">Send Qr Code</button>}
             </div>
         </div>
     )
