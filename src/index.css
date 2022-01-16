@@ -59,19 +59,12 @@ header{
   }
   
   section{
-    min-height: 100vh;
-    background-color: lightskyblue;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -20px;
   }
   
-  section h2{
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    color: #444;
-    font-size: 2.5rem;
-  }
   
   @media(max-width : 800px ){
     header .logo,
@@ -112,46 +105,9 @@ header{
       margin-left: 20px ;
       line-height: 70px;
     }
-    section h2{
-      font-size: 1.4rem;
-    }
-    .Clock{
-      position: relative;
-      background: linear-gradient(270deg,#051817 , #0e3839);
-      display: flex;
-      margin: a;
-      justify-content: center;
-      align-items: center;
-      height: 100px;
-      width: 350px;
-      color: #86f1f6;
-      text-shadow: 1px 1px 7px;
-      border-radius: 15px;
-      border: 2px solid silver;
-      box-shadow: 0 0 5px 25px;
-
-
-    }
-    .Clock section {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-
-    }
-    .Clock section p {
-
-      font-size: 4rem;
-    }
-    .clock section small {
-      color: silver;
-      
-    }
   }
 
   .clock {
-
     position: relative;
     margin: 0;
     display: flex;

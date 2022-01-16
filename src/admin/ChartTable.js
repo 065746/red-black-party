@@ -81,7 +81,7 @@ function ChartTable() {
         },
         series:[
             {
-                name: 'Data',
+                name: 'Person',
                 data: [
                     onePersonArr.length,
                     coupleArr.length,

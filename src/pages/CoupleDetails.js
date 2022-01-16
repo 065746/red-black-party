@@ -64,7 +64,7 @@ function OnePersonDetails() {
             </div>
             <div className="">
                 {!confirm ? <button onClick={confirmUser} className="text-white px-5 py-2 bg-green-800 hover:bg-green-700 active:bg-green-900">Confirm</button>
-                         : <button onClick={() => navigate(`/admin/customers/couple/${id}/qrcode`, { state: user })} className="text-white px-5 py-2 bg-blue-800 hover:bg-blue-700 active:bg-blue-900">Send Qr Code</button>}
+                         : <button onClick={() => navigate(`/admin/customers/couple/${id}/qrcode`, { state: {user: user, id: id},  })} className="text-white px-5 py-2 bg-blue-800 hover:bg-blue-700 active:bg-blue-900">Send Qr Code</button>}
             </div>
         </div>
     )

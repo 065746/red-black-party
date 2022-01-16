@@ -83,10 +83,10 @@ function Dashboard() {
       
       const columns = [
         { field: 'id', headerName: 'ID', width: 180 },
-        { field: 'fullName', headerName: 'Full Name', width: 150 },
-        { field: 'phoneNumber', headerName: 'Phone Number', width: 150 },
-        { field: 'email', headerName: 'Email', width: 220 },
-        { field: 'timestamp', headerName: 'Timestamp', width: 150 },
+        { field: 'fullName', headerName: 'Full Name', width: 150, editable: true},
+        { field: 'phoneNumber', headerName: 'Phone Number', width: 150, editable: true },
+        { field: 'email', headerName: 'Email', width: 220, editable: true },
+        { field: 'timestamp', headerName: 'Timestamp', width: 150, editable: true },
       ];
     return (
         <div className={`ml-[300px] transition-all duration-200  px-6 py-2 ${hide && 'ml-0'}`}>
@@ -110,6 +110,7 @@ function Dashboard() {
                     rows={onePerson} 
                     columns={columns}
                     checkboxSelection
+                    isCellEditable={(params) => console.log(params.row.email)}
                 />
                 <Link to='/admin/customers' >View More</Link>
             </div>
