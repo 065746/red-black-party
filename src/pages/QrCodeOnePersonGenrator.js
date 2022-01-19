@@ -5,6 +5,7 @@ import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { db, storage } from "../firebase";
 import { useStateValue } from "../context/StateProider";
+import PDF from "../admin/PDF";
 
 function QrCodeGenrator() {
     const [imgUrl, setImgUrl] = useState(null)
@@ -100,18 +101,15 @@ useEffect(() => {
                 </a>
               </div>
             )}
-            {/* <div className="max-w-sm mt-4 p-6 flex flex-col items-center space-y-3">
-              <button onClick={onScanFile} className="bg-purple-700 text-white px-5 py-2 hover:bg-purple-600 active:bg-purple-800">Scan QR Code</button>
-              <QrReader 
-                 ref={qrCodeRef}
-                 delay={300}
-                 style={{ width: '100%'}}
-                 onError={(err) => console.log(err)}
-                 onScan={handleScan}
-                 legacyMode
+            <div className="">
+              <PDF 
+                name={state.reduce((_, v) => v.fullName, {})} 
+                id={id} 
+                type={'One Person'} 
+                timestamp={state.reduce((_, v) => v.timestamp, {})} 
+                qrcode={imgUrl}
               />
-              <h3>Scan result file : {scanResult} </h3>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

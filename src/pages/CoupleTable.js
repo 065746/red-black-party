@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { DataGrid } from "@mui/x-data-grid"
 import { collection, onSnapshot } from "firebase/firestore"
 import moment from "moment"
-import { useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import Spinner from "../components/Spinner"
 import { db } from "../firebase"
 import { useStateValue } from "../context/StateProider"
@@ -52,10 +52,20 @@ function OnePersonTable() {
         { field: 'id', headerName: 'ID', width: 180 },
         { field: 'fullName', headerName: "First Person's Full Name", width: 260 },
         { field: 'email', headerName: "First Person's Email", width: 260 },
-        { field: 'phoneNumber', headerName: "First Person's Phone Number", width: 260 },
+        { field: 'phoneNumber', headerName: "First Person's Phone Number", width: 260, renderCell: (params) => (
+            <div className='flex items-center space-x-2'>
+                <p>{params.row.phoneNumber}</p>
+                <a className="text-sm bg-green-800 text-white px-4 py-2 rounded-full" href={`https://wa.me/${params.row.phoneNumber}`} target={'_blank'} >Watp</a>
+            </div>
+        ) },
         { field: 'fullName2', headerName: "Second Person's Full Name", width: 260 },
         { field: 'email2', headerName: "Second Person's Email", width: 260 },
-        { field: 'phoneNumber2', headerName: "Second Person's Phone Number", width: 260 },
+        { field: 'phoneNumber2', headerName: "Second Person's Phone Number", width: 260, renderCell: (params) => (
+            <div className='flex items-center space-x-2'>
+                <p>{params.row.phoneNumber}</p>
+                <a className="text-sm bg-green-800 text-white px-4 py-2 rounded-full" href={`https://wa.me/${params.row.phoneNumber}`} target={'_blank'} >Watp</a>
+            </div>
+        ) },
         { field: 'status', headerName: "Couple status", width: 200 },
         { field: 'timestamp', headerName: "Timestamp", width: 260 },
         { field: 'actions', headerName: "Actions", width: 260, renderCell: (params) => (

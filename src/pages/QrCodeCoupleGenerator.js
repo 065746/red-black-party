@@ -5,6 +5,7 @@ import { useStateValue } from "../context/StateProider";
 import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db, storage } from "../firebase";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import PDF from "../admin/PDF";
 
 function QrCodeCoupleGenerator() {
     const [imgUrl, setImgUrl] = useState(null)
@@ -15,6 +16,7 @@ function QrCodeCoupleGenerator() {
     const [confirmed2, setConfirmed2] = useState(false)
     const { state } = useLocation()
     const [{hide}, dispatch] = useStateValue()
+    console.log(state)
     
     const generateQrCode1 = async () => {
         const fullName = state.user.reduce((_, v) => v.fullName, {})
@@ -169,7 +171,22 @@ function QrCodeCoupleGenerator() {
               </div>
             )}
           </div>
-          {/*  */}
+          <div className="">
+            <PDF 
+                name={state.user.reduce((_, v) => v.fullName, {})} 
+                id={state.id} 
+                type={'Couple'} 
+                timestamp={state.user.reduce((_, v) => v.timestamp, {})} 
+                qrcode={imgUrl}
+              />
+            <PDF 
+              name={state.user.reduce((_, v) => v.fullName2, {})} 
+              id={state.id} 
+              type={'Couple'} 
+              timestamp={state.user.reduce((_, v) => v.timestamp, {})} 
+              qrcode={imgUrl}
+            />
+          </div>
         </div>
       </div>
     );

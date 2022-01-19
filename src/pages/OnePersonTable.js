@@ -47,9 +47,14 @@ function OnePersonTable() {
     const columns = [
         { field: 'id', headerName: 'ID', width: 180 },
         { field: 'fullName', headerName: 'Full Name', width: 150 },
-        { field: 'phoneNumber', headerName: 'Phone Number', width: 150 },
+        { field: 'phoneNumber', headerName: 'Phone Number', width: 200, renderCell: (params) => (
+            <div className='flex items-center space-x-2'>
+                <p>{params.row.phoneNumber}</p>
+                <a className='bg-green-700 p-2 rounded-full text-white' href={`https://wa.me/${params.row.phoneNumber}`} target={'_blank'} >Watp</a>
+            </div>
+        ) },
         { field: 'email', headerName: 'Email', width: 150 },
-        { field: 'gender', headerName: 'Gender', width: 150 },
+        { field: 'gender', headerName: 'Gender', width: 100 },
         { field: 'status', headerName: 'Status', width: 150 },
         { field: 'timestamp', headerName: 'Timestamp', width: 150 },
         { field: 'view', headerName: 'View', width: 150, renderCell: (params) => (
