@@ -21,6 +21,8 @@ import OnePersonDetails from "./pages/OnePersonDetails";
 import CoupleDetails from "./pages/CoupleDetails";
 import QrCodeOnePersonGenrator from "./pages/QrCodeOnePersonGenrator";
 import QrCodeCoupleGenerator from "./pages/QrCodeCoupleGenerator";
+import OnePersonConfirmed from './pages/OnePersonConfirmed';
+import CoupleConfirmed from "./pages/CoupleConfirmed";
 
 
 
@@ -58,9 +60,11 @@ function App() {
               <Route path='customers/one-person' element={<OnePersonTable />} />
               <Route path='customers/one-person/:id' element={<OnePersonDetails />} />
               <Route path='customers/one-person/:id/qrcode' element={<QrCodeOnePersonGenrator />} />
+              <Route path='customers/one-person/confirmed' element={<OnePersonConfirmed />} />
               <Route path='customers/couple' element={<CoupleTable />} />
               <Route path='customers/couple/:id' element={<CoupleDetails />} />
               <Route path='customers/couple/:id/qrcode' element={<QrCodeCoupleGenerator />} />
+              <Route path='customers/couple/confirmed' element={<CoupleConfirmed />} />
               <Route path='customers/4-girls' element={<FourGirlsTable />} />
               <Route path='customers/4-girls/:id' element={<FourGirlsGroup />} />
               <Route path='customers/4-boys' element={<FourBoysTable />} />

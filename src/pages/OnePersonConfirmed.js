@@ -8,7 +8,7 @@ import { useStateValue } from "../context/StateProider"
 import Spinner from "../components/Spinner"
 import Modal from "../admin/Modal"
 
-function OnePersonTable() {
+function OnePersonConfirmed() {
     const [loading, setLoading] = useState(true)
     const [userRows, setUserRows] = useState([])
     const [open, setOpen] = useState(false) 
@@ -57,24 +57,24 @@ function OnePersonTable() {
         { field: 'gender', headerName: 'Gender', width: 100 },
         { field: 'status', headerName: 'Status', width: 150 },
         { field: 'timestamp', headerName: 'Timestamp', width: 150 },
-        { field: 'view', headerName: 'View', width: 150, renderCell: (params) => (
-            <div className="space-x-2">
-                <button onClick={() => {
-                    setOpen(true)
-                    setFindDoc(params.row.id)
-                }} className="px-3 py-2 bg-red-700 rounded-full text-white">Delete</button>
-                <button onClick={() => navigate(`/admin/customers/one-person/${params.row.id}`, {
-                    state: userRows
-                })} className="px-3 py-2 bg-green-700 rounded-full text-white">View</button>
-            </div>
-        ) },
+        // { field: 'view', headerName: 'View', width: 150, renderCell: (params) => (
+        //     <div className="space-x-2">
+        //         <button onClick={() => {
+        //             setOpen(true)
+        //             setFindDoc(params.row.id)
+        //         }} className="px-3 py-2 bg-red-700 rounded-full text-white">Delete</button>
+        //         <button onClick={() => navigate(`/admin/customers/one-person/${params.row.id}`, {
+        //             state: userRows
+        //         })} className="px-3 py-2 bg-green-700 rounded-full text-white">View</button>
+        //     </div>
+        // ) },
       ];
     return (
         <div className={`h-screen w-[calc(100%-300px)] ml-auto px-10 pb-8 transition-all duration-200 ${hide && '!w-full'}`}>
             <h2 className="text-center text-3xl font-semibold mb-7">"One Person" Table</h2>
             {!userRows.length ? <Spinner /> 
                        :  <DataGrid
-                            rows={userRows.filter(row => row.status !== 'Confirmed')} 
+                            rows={userRows.filter(row => row.status === 'Confirmed')} 
                             columns={columns}
                             checkboxSelection
                             />}
@@ -83,4 +83,4 @@ function OnePersonTable() {
     )
 }
 
-export default OnePersonTable
+export default OnePersonConfirmed

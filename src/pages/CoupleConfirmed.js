@@ -8,7 +8,7 @@ import { db } from "../firebase"
 import { useStateValue } from "../context/StateProider"
 import Modal from "../admin/Modal"
 
-function CoupleTable() {
+function CoupleConfirmed() {
     const [loading, setLoading] = useState(true)
     const [userRows, setUserRows] = useState([])
     const [open, setOpen] = useState(false)
@@ -68,17 +68,17 @@ function CoupleTable() {
         ) },
         { field: 'status', headerName: "Couple status", width: 200 },
         { field: 'timestamp', headerName: "Timestamp", width: 260 },
-        { field: 'actions', headerName: "Actions", width: 260, renderCell: (params) => (
-          <div className="space-x-2">
-                <button onClick={() => {
-                    setOpen(true)
-                    setFindDoc(params.row.id)
-                }} className="px-3 py-2 bg-red-700 rounded-full text-white">Delete</button>
-                <button onClick={() => navigate(`/admin/customers/couple/${params.row.id}`, {
-                    state: userRows
-                })} className="px-3 py-2 bg-green-700 rounded-full text-white">View</button>
-            </div>
-        ) },
+        // { field: 'actions', headerName: "Actions", width: 260, renderCell: (params) => (
+        //   <div className="space-x-2">
+        //         <button onClick={() => {
+        //             setOpen(true)
+        //             setFindDoc(params.row.id)
+        //         }} className="px-3 py-2 bg-red-700 rounded-full text-white">Delete</button>
+        //         <button onClick={() => navigate(`/admin/customers/couple/${params.row.id}`, {
+        //             state: userRows
+        //         })} className="px-3 py-2 bg-green-700 rounded-full text-white">View</button>
+        //     </div>
+        // ) },
 
       ];
     return (
@@ -87,7 +87,7 @@ function CoupleTable() {
             {
                 !userRows.length ? <Spinner /> 
                         :  <DataGrid
-                                rows={userRows.filter(row => row.status !== 'Confirmed')} 
+                                rows={userRows.filter(row => row.status === 'Confirmed')} 
                                 columns={columns}
                                 checkboxSelection
                             />
@@ -97,4 +97,4 @@ function CoupleTable() {
     )
 }
 
-export default CoupleTable
+export default CoupleConfirmed
